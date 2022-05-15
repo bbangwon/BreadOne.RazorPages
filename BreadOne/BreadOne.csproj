@@ -6,4 +6,9 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Page Include="Pages\Version.cshtml" />
+    <Page Include="Version.cshtml" />
+  </ItemGroup>
+
 </Project>
