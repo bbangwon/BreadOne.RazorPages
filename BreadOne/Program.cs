@@ -5,7 +5,7 @@ builder.Services.AddRazorPages();
 
 var app = builder.Build();
 
-app.UseDefaultFiles();
+//app.UseDefaultFiles();
 app.UseStaticFiles();   //정적인 HTML, CSS, JavaScript,... 실행
 
 
