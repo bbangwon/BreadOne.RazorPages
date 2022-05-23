@@ -1,5 +1,9 @@
 @page
 
+@{
+    var siteTitle = "My Blog";
+}
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -43,6 +47,14 @@
                                     <li><a class="dropdown-item" href="/Portfolio/Item">Portfolio Item</a></li>
                                 </ul>
                             </li>
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <li class="nav-item"><a class="nav-link" href="/Logout">Logout</a></li>                            
+                            }
+                            else
+                            {
+                                <li class="nav-item"><a class="nav-link" href="/Login">Login</a></li>
+                            }
                         </ul>
                     </div>
                 </div>
@@ -216,7 +228,7 @@
         <footer class="bg-dark py-4 mt-auto">
             <div class="container px-5">
                 <div class="row align-items-center justify-content-between flex-column flex-sm-row">
-                    <div class="col-auto"><div class="small m-0 text-white">Copyright &copy; Your Website 2022</div></div>
+                    <div class="col-auto"><div class="small m-0 text-white">Copyright &copy; @siteTitle @DateTime.Now.Year</div></div>
                     <div class="col-auto">
                         <a class="link-light small" href="#!">Privacy</a>
                         <span class="text-white mx-1">&middot;</span>
