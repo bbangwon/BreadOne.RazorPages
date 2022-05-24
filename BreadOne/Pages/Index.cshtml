@@ -1,4 +1,5 @@
 @page
+@*@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers*@
 
 @{
     var siteTitle = "My Blog";
@@ -29,10 +30,10 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                             <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-                            <li class="nav-item"><a class="nav-link" href="/About">About</a></li>
-                            <li class="nav-item"><a class="nav-link" href="/Contact">Contact</a></li>
-                            <li class="nav-item"><a class="nav-link" href="/Pricing">Pricing</a></li>
-                            <li class="nav-item"><a class="nav-link" href="/Faq">FAQ</a></li>
+                            <li class="nav-item"><a class="nav-link" asp-page="/About">About</a></li>
+                            <li class="nav-item"><a class="nav-link" asp-page="/Contact">Contact</a></li>
+                            <li class="nav-item"><a class="nav-link" asp-page="/Pricing">Pricing</a></li>
+                            <li class="nav-item"><a class="nav-link" asp-page="/Faq">FAQ</a></li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Blog</a>
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
