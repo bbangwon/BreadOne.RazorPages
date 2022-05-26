@@ -1,7 +1,28 @@
 @page
+@using BreadOne.Models
 
 @{
-	string[] portfolios = { "One", "Two", "Three", "Four" };
+		List<Portfolio> portfolios = new List<Portfolio>()
+	{
+		new Portfolio
+		{
+			Id = 1,
+			Title = ".NET",
+			Description = "ASP.NET Core"
+		},
+		new Portfolio
+		{
+			Id = 2,
+			Title = "Java",
+			Description = "Spring Boot"
+		},
+		new Portfolio
+		{
+			Id = 2,
+			Title = "Javascript",
+			Description = "React"
+		}
+	};	
 }
 
 
@@ -18,7 +39,8 @@
 				<div class="col-lg-6">
 					<div class="position-relative mb-5">
 						<img class="img-fluid rounded-3 mb-3" src="https://dummyimage.com/600x400/343a40/6c757d" alt="..." />
-						<a class="h3 fw-bolder text-decoration-none link-dark stretched-link" href="#!">Project @portfolio</a>
+						<a class="h3 fw-bolder text-decoration-none link-dark stretched-link" href="#!">@portfolio.Title</a>
+						<p class="lead fw-normal text-muted mb-0">@portfolio.Description</p>
 					</div>
 				</div>
 			}
