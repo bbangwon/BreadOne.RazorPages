@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\Portfolios\images\azure.jpg" />
+    <None Include="wwwroot\Portfolios\images\react.jpg" />
+    <None Include="wwwroot\Portfolios\images\spring.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Page Include="Pages\Version.cshtml" />
     <Page Include="Version.cshtml" />
   </ItemGroup>
