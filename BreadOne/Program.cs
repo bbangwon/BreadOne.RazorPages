@@ -1,7 +1,10 @@
+using BreadOne.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 //Add Services to the container
 builder.Services.AddRazorPages();
+builder.Services.AddTransient<PortfolioServiceJsonFile>();
 
 var app = builder.Build();
 

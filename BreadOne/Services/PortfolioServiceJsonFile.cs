@@ -1,20 +1,35 @@
 ﻿using BreadOne.Models;
 using System.Text.Json;
 
-namespace BreadOne.Services
+namespace BreadOne.Services;
+
+public class PortfolioServiceJsonFile
 {
-    public class PortfolioServiceJsonFile
+    private readonly IWebHostEnvironment _webHostEnvironment;
+
+    public PortfolioServiceJsonFile(IWebHostEnvironment webHostEnvironment)
     {
-        public IEnumerable<Portfolio>? GetPortfolios()
+        this._webHostEnvironment = webHostEnvironment;
+    }
+
+    private string JsonFileName { 
+        get
         {
-            var jsonFileName = @"C:\study\aspnetcore\RazorPages\BreadOne.RazorPages\BreadOne\wwwroot\Portfolios\portfolio.json";
-
-            using var jsonFileReader = File.OpenText(jsonFileName);
-
-            var options = new JsonSerializerOptions() { PropertyNameCaseInsensitive = true };
-            var portfolios = JsonSerializer.Deserialize<Portfolio[]>(jsonFileReader.ReadToEnd(), options);
-
-            return portfolios;
+            return Path.Combine(_webHostEnvironment.WebRootPath, "Portfolios", "portfolio.json");
         }
     }
+
+    public IEnumerable<Portfolio>? GetPortfolios()
+    {
+        using var jsonFileReader = File.OpenText(JsonFileName);
+
+        var options = new JsonSerializerOptions() { 
+            //대소문자 구분하지 않음
+            PropertyNameCaseInsensitive = true 
+        };
+        var portfolios = JsonSerializer.Deserialize<Portfolio[]>(jsonFileReader.ReadToEnd(), options);
+
+        return portfolios;
+    }
 }
+
