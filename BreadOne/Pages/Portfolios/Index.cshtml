@@ -1,6 +1,8 @@
-@page
-@using BreadOne.Models
-@using BreadOne.Services
+﻿@page
+@model BreadOne.Pages.Portfolios.IndexModel
+@{
+	ViewData["Title"] = "Portfolio";
+}
 
 @inject PortfolioServiceJsonFile PortfolioService;
 
@@ -45,4 +47,3 @@
 		<a class="btn btn-lg btn-primary" href="#!">Contact us</a>
 	</div>
 </section>
-
