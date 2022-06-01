@@ -14,6 +14,7 @@ namespace BreadOne.Models
 
         [JsonPropertyName("img")]
         public string Image { get; set; }
+        public List<int> Ratings { get; set; }
 
         public override string ToString()
         {

@@ -1,5 +1,4 @@
-﻿
-@using BreadOne.Models
+﻿@using BreadOne.Models
 @using BreadOne.Services
 @using Microsoft.AspNetCore.Components.Web
 @inject PortfolioServiceJsonFile PortfolioService
@@ -9,24 +8,23 @@
 }
 
 <h2>Blazor Component 사용 출력</h2>
-<div class="row gx-5">
-	@if(portfolis != null)
+<div class="row gx-5 portfolio-list">
+	@if (portfolis != null)
 	{
 		@foreach (var portfolio in portfolis)
 		{
 			<div class="col-lg-6">
-				<div class="position-relative mb-5">
+				<div class="position-relative mb-5 card">
 					@*<img class="img-fluid rounded-3 mb-3" src="@portfolio.Image" alt="..." />*@
 					<div class="portfolio-item-image"
-					style="background-image: url('@portfolio.Image')"></div>
+				 style="background-image: url('@portfolio.Image')"></div>
 					<a class="h3 fw-bolder text-decoration-none link-dark" href="#!">@portfolio.Title</a>
 					<p class="lead fw-normal text-muted mb-0">@portfolio.Description</p>
 					<div class="card-footer">
-						<button 
-							class="btn btn-primary" 
-							data-bs-toggle="modal" 
-							data-bs-target="#portfolioModal"
-							@onclick="(() => SelectPortfolio(portfolio.Id))">
+						<button class="btn btn-primary"
+						data-bs-toggle="modal"
+						data-bs-target="#portfolioModal"
+						@onclick="(() => SelectPortfolio(portfolio.Id))">
 							Read More...
 						</button>
 					</div>
@@ -38,34 +36,78 @@
 </div>
 @if (selectedPortfolio != null)
 {
-<!-- Modal -->
-<div class="modal fade" id="portfolioModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">@selectedPortfolio.Title</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        @selectedPortfolio.Description
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
+	<!-- Modal -->
+	<div class="modal fade" id="portfolioModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">@selectedPortfolio.Title</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<div class="portfolio-item-image" style="background-image: url('@selectedPortfolio.Image')"></div>
+					<p class="lead fw-normal text-muted mb-0">@selectedPortfolio.Description</p>
+				</div>
+				<div class="modal-footer">
+					@if (voteCount == 0)
+					{
+						<span>투표하세요!</span>
+					}
+					else
+					{
+						<span>@voteCount @voteLabel</span>
+					}
+					@for (int i = 1; i < 6; i++)
+					{
+						var currentStar = i;
+						if (i <= currentRating)
+						{
+							<span class="fa fa-star" @onclick="(()=>HandleClick(currentStar))" />
+						}
+						else
+						{
+							<span class="fa fa-star-o" @onclick="(()=>HandleClick(currentStar))" />
+						}
+					}
+				</div>
+			</div>
+		</div>
+	</div>
 }
 
 
-@code{
+@code {
 	Portfolio? selectedPortfolio = new Portfolio();
+	int currentRating = 0;
+	int voteCount = 0;
+	string voteLabel;
 
 	void SelectPortfolio(int portfolioId)
 	{
-		selectedPortfolio = PortfolioService.GetPortfolios()?.First(p => p.Id == portfolioId);
+		selectedPortfolio = PortfolioService.GetPortfolios()?.FirstOrDefault(p => p.Id == portfolioId);
+
+		if (selectedPortfolio?.Ratings == null)
+		{
+			currentRating = 0;
+			voteCount = 0;
+		}
+		else
+		{
+			voteCount = selectedPortfolio.Ratings.Count();
+			voteLabel = (voteCount > 1) ? "Votes" : "Vote";
+			currentRating = voteCount == 0 ? 0 : selectedPortfolio.Ratings.Sum() / voteCount;
+		}
 	}
+
+	void HandleClick(int rating)
+	{
+		if (selectedPortfolio == null)
+			return;
+
+		PortfolioService.AddRating(selectedPortfolio.Id, rating);
+		SelectPortfolio(selectedPortfolio.Id);
+	}
+
 }
 
 
