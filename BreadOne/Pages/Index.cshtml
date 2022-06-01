@@ -1,9 +1,13 @@
 @page
 
 @*@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers*@
+@using BreadOne.Models
+@using BreadOne.Services
+@using BreadOne.Components
 
 @{
 	ViewBag.Title = "Index";
+	Layout = "_LayoutPortfolio";
 }
 
 
@@ -153,6 +157,7 @@
 				</div>
 			</div>
 		</div>
+		<component type="typeof(PortfolioList)" render-mode="ServerPrerendered" />		
 		<!-- Call to action-->
 		<aside class="bg-primary bg-gradient rounded-3 p-4 p-sm-5 mt-5">
 			<div class="d-flex align-items-center justify-content-between flex-column flex-xl-row text-center text-xl-start">

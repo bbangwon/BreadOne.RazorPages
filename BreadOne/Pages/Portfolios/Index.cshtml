@@ -2,6 +2,7 @@
 @model BreadOne.Pages.Portfolios.IndexModel
 @{
 	ViewData["Title"] = "Portfolio";
+	Layout = "_LayoutPortfolio";
 }
 
 @using BreadOne.Components 
@@ -40,8 +41,7 @@
 
 		<hr />
 		-->
-		<component type="typeof(PortfolioList)" render-mode="ServerPrerendered" />
-		<script src="_framework/blazor.server.js"></script>
+		<component type="typeof(PortfolioList)" render-mode="ServerPrerendered" />		
 	</div>
 </section>
 <section class="py-5 bg-light">
