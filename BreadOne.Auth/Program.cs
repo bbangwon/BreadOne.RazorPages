@@ -9,9 +9,11 @@ using System.Text.Json;
 var builder = WebApplication.CreateBuilder(args);
 //서비스 추가
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
+builder.Services.AddControllers();
 var app = builder.Build();
 
 app.UseAuthentication();
+app.UseAuthorization();
 
 #region Menu
 app.MapGet("/", async context =>
@@ -25,6 +27,10 @@ content += "<a href=\"/Info\">정보</a><br />";
 content += "<a href=\"/InfoDetails\">정보(Details)</a><br />";
 content += "<a href=\"/InfoJson\">정보(JSON)</a><br />";
 content += "<a href=\"/Logout\">로그아웃</a><br />";
+content += "<hr /><a href=\"/Landing/Index\">랜딩페이지</a><br />";
+content += "<a href=\"/Greeting\">환영페이지</a><br />";
+content += "<a href=\"/Dashboard\">관리페이지</a><br />";
+content += "<a href=\"/api/AuthService\">로그인 정보(JSON)</a><br />";
 context.Response.Headers["Content-Type"] = "text/html; charset=utf-8";
 await context.Response.WriteAsync(content);
 }); 
@@ -164,7 +170,9 @@ await context.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
 
 context.Response.Headers["Content-Type"] = "text/html; charset=utf-8";
 await context.Response.WriteAsync("<h3>로그아웃 완료</h3>");
-}); 
+});
 #endregion
+
+app.MapDefaultControllerRoute();
 
 app.Run();
