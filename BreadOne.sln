@@ -13,7 +13,9 @@ Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "BreadOne.Zero.SqlServer", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BreadOne.Website", "BreadOne.Website\BreadOne.Website.csproj", "{B8E26C87-CB55-43F1-99D0-CFECADF46C6C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BreadOne.Auth", "BreadOne.Auth\BreadOne.Auth.csproj", "{4A69DF38-B08F-4844-8982-B7D96DFDC94C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BreadOne.Auth", "BreadOne.Auth\BreadOne.Auth.csproj", "{4A69DF38-B08F-4844-8982-B7D96DFDC94C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BreadOne.CRUD", "BreadOne.CRUD\BreadOne.CRUD.csproj", "{DB69E459-46A1-42BD-A245-7B0266A99443}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,6 +49,10 @@ Global
 		{4A69DF38-B08F-4844-8982-B7D96DFDC94C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4A69DF38-B08F-4844-8982-B7D96DFDC94C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4A69DF38-B08F-4844-8982-B7D96DFDC94C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB69E459-46A1-42BD-A245-7B0266A99443}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB69E459-46A1-42BD-A245-7B0266A99443}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB69E459-46A1-42BD-A245-7B0266A99443}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB69E459-46A1-42BD-A245-7B0266A99443}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
