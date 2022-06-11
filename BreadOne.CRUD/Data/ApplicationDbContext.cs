@@ -10,6 +10,6 @@ namespace BreadOne.CRUD.Data
             : base(options) { }
 
         public DbSet<Property> Properties { get; set; } = null!;
-
+        public DbSet<Location> Locations { get; set; } = null!;
     }
 }
