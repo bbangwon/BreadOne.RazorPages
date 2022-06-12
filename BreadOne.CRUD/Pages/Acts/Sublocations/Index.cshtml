@@ -1,5 +1,5 @@
 ﻿@page
-@model BreadOne.CRUD.Pages.Acts.Locations.IndexModel
+@model BreadOne.CRUD.Pages.Acts.Sublocations.IndexModel
 
 @{
     ViewData["Title"] = "Index";
@@ -14,38 +14,44 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Location[0].Name)
+                @Html.DisplayNameFor(model => model.Sublocation[0].SublocationName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Location[0].Active)
+                @Html.DisplayNameFor(model => model.Sublocation[0].Active)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Location[0].Property)
+                @Html.DisplayNameFor(model => model.Sublocation[0].Location)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Location[0].PropertyRef)
+                @Html.DisplayNameFor(model => model.Sublocation[0].Property)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sublocation[0].LocationRef)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Location) {
+@foreach (var item in Model.Sublocation) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Name)
+                @Html.DisplayFor(modelItem => item.SublocationName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Active)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Location)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Property)
             </td>
             <td>
                 @{
-                    var propertyName = "";
-                    propertyName = item.PropertyRef?.Name ?? "(Unknown)";                    
+                    var locationName = "";
+                    locationName = item.LocationRef?.Name ?? "(Unknown)";                    
                 }
-                @propertyName
+                @locationName
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
